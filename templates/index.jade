@@ -1,0 +1,8 @@
+extends base
+
+block content
+	h1 List of polls
+	br
+	- for (var x = 0; x < poll_list.length; x++)
+		a(href="#{poll_list[x].get_absolute_url()}") #{poll_list[x].name}
+		br

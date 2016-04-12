@@ -1,0 +1,15 @@
+extends ../base
+
+block content
+	h1 Register your self and enjoy adding new polls
+
+	div.container
+		form(method="post", action="")
+			label User name
+			input(type="text", name="username")
+			label Email
+			input(type="email", name="email")
+			label Password
+			input(type="password", name="password")
+			br
+			input(type="submit", value="Sign up")

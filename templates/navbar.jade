@@ -1,0 +1,16 @@
+div.row
+	#loggeduser
+	if loggeduser
+		a(href="/") Home
+		|  | 
+		a(href="/user/home/#{loggeduser}/") Profile
+		|  | 
+		a(href="/poll/add/") Add Poll
+		|  | 
+		a(href="/user/logout/") logout
+	else
+		a(href="/") Home
+		|  | 
+		a(href="/user/signup/") Sign Up
+		|  | 
+		a(href="/user/login/") Login

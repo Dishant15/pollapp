@@ -1,0 +1,15 @@
+extends ../base
+
+block content
+	h1 Add a new poll with amazing name
+
+	div.container
+		form(method="post", action="")
+			label Poll name
+			input(type="text", name="poll_name")
+			label Choice 1
+			input(type="text", name="choice1")
+			label Choice 2
+			input(type="text", name="choice2")
+			br
+			input(type="submit", value="Add Poll")
