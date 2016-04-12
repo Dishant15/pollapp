@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var user = require("../models/user");
+var polls = require("../models/polls");
 
 
 // Register page for a new user
@@ -88,6 +89,25 @@ router.get('/home/:username', function(req, res) {
 	}
 	var username = req.params.username;
   	res.render("user/home", {name: username, loggeduser:username});
+});
+
+// MyPolls page
+router.get('/mypolls/', function(req, res) {
+	if(!req.session.logged){
+		// go login if not logged yet
+		res.redirect("/user/login/");
+	}
+	var username = req.session.user.id;
+  	
+  	polls.find({creator:username}, function(err, poll_list){
+  		if(err)throw err;
+  		res.render("index", {
+  			name: username,
+  			loggeduser:username,
+  			title: "Home | Poll App",
+  			poll_list: poll_list
+  		});
+  	});
 });
 
 module.exports = router;

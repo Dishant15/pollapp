@@ -2,5 +2,6 @@ extends ../base
 
 block content
 	h1 Welcome #{name}
-	button.btn.btn-primary My Polls
+	a(href="/user/mypolls/")
+		button.btn.btn-primary My Polls
 	button.btn.btn-warning Add Poll
