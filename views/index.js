@@ -9,7 +9,8 @@ router.get('/', function(req, res, next) {
 	if(req.session.logged){
 		loggeduser = req.session.user.id;
 	}
-
+	var message = req.session.msg || null;
+	if(req.session.msg) req.session.msg = null;
 	// get all the current polls
 	polls.get_all(function(err,poll_list){
 		if(err){
@@ -23,7 +24,8 @@ router.get('/', function(req, res, next) {
 			res.render('index',	{ 
 				title: 'Index | Poll App',
 				loggeduser:loggeduser,
-				poll_list:poll_list 
+				poll_list:poll_list,
+				message : message
 			});
 		}
 	});

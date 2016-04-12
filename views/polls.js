@@ -47,7 +47,7 @@ router.get('/vote/:pid/:cid/',function(req, res){
 	var pid = req.params.pid;
 	if(voted_list.indexOf(pid) != -1){
 		// user has already voted on this poll
-		console.log("already voted");
+		req.session.msg = "You have already voted on this poll !!";
 		res.redirect("/");
 		return;
 	}

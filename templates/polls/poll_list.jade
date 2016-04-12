@@ -1,0 +1,8 @@
+- for (var x = 0; x < poll_list.length; x++)
+		a(href="#{poll_list[x].get_absolute_url()}") #{poll_list[x].name}
+		ul
+		- var poll = poll_list[x] 
+		- for(var y=0; y < poll.choices.length; y++)
+			li #{poll.choices[y].name} - #{poll.choices[y].votes} - 
+				a.btn.btn-info(href="/poll/vote/#{poll._id}/#{poll.choices[y]._id}/") vote
+		br

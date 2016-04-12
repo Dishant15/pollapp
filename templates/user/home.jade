@@ -1,7 +1,10 @@
 extends ../base
 
 block content
-	h1 Welcome #{name}
-	a(href="/user/mypolls/")
-		button.btn.btn-primary My Polls
-	button.btn.btn-warning Add Poll
+	.jumbotron
+		h1 #{name}
+		p Welcome to this simple poll website. Create your polls vote on polls by other people and share
+			| them with your friends. Hope you will enjoy your stay!!
+		.text-center
+			a.btn.btn-primary(href="/user/mypolls/") My Polls
+			a.btn.btn-warning(href="/poll/add/") Add New Poll
