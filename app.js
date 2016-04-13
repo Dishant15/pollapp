@@ -18,7 +18,7 @@ app.set('views', path.join(__dirname, 'templates'));
 app.set('view engine', 'jade');
 
 // setup database connection
-var mongo_uri = process.env.MONGO_URI || 'mongodb://localhost:27017/pollapp';
+var mongo_uri = "mongodb://dishant:root@ds023490.mlab.com:23490/heroku_z2bxm2mx";
 mongoose.connect(mongo_uri, function(err, db){
   if(err){
     console.log(err);
