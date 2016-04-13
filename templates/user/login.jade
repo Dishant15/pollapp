@@ -1,6 +1,9 @@
 extends ../base
 
 block content
+	#message
+	if message
+		.alert.alert-danger(role='alert') #{message}
 	h1.text-center.poll-title Login to your account
 
 	form(method="post", action="")

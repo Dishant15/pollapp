@@ -52,11 +52,19 @@ router.post('/login/', function(req, res) {
 	// get logged user from session
 	user.findOne({username: username}, function(err,loggeduser){
 		if(err){
-			// Login error
+			// DB error
 			req.session.user.id = "none";
 			req.session.logged = false;
 		  	res.render('user/login',{title:"Login | Poll App"});
 		} else {
+			if(!loggeduser){
+				// User not found
+				res.render('user/login',{
+					title:"Login | Poll App",
+					message: "Invalid username or password, Sign Up if you are new to poll app"
+				});
+				return;
+			}
 			if(loggeduser.authenticate(username, password)){
 				req.session.user.id = loggeduser.username;
 				req.session.logged = true;
@@ -65,7 +73,7 @@ router.post('/login/', function(req, res) {
 				// authentication failed
 				res.render('user/login',{
 					title:"Login | Poll App",
-					error: "Invalid username or password"
+					message: "Invalid username or password"
 				});
 			}
 		}
