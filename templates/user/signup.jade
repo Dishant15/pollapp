@@ -1,15 +1,17 @@
 extends ../base
 
 block content
-	h1 Register your self and enjoy adding new polls
+	h1.text-center.poll-title Register your self and enjoy adding new polls
 
-	div.container
-		form(method="post", action="")
+	form(method="post", action="")
+		.form-group
 			label User name
-			input(type="text", name="username")
+			input.form-control(type="text", name="username", placeholder="username")
+		.form-group
 			label Email
-			input(type="email", name="email")
+			input.form-control(type="email", name="email", placeholder="username")
+		.form-group
 			label Password
-			input(type="password", name="password")
-			br
-			input(type="submit", value="Sign up")
+			input.form-control(type="password", name="password", placeholder="password")
+		.text-center
+			button.btn.btn-success.bu-size(type="submit", value="Sign Up") Sign Up

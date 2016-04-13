@@ -7,8 +7,14 @@ var polls = require("../models/polls");
 // Show poll detail page
 router.get('/detail/:id', function(req, res){
 	var loggeduser = req.session.logged ? req.session.user.id : null;
+	var voted = req.session.user.polls.indexOf(req.params.id) != -1;
 	polls.findOne({_id:req.params.id}, function(err, poll){
-		res.render("polls/detail", {title: poll.name + " | Poll App" , poll:poll, loggeduser : loggeduser});
+		res.render("polls/detail", {
+				title: poll.name + " | Poll App" ,
+				poll : poll,
+				loggeduser : loggeduser,
+				voted : voted
+			});
 	});
 });
 
@@ -23,15 +29,18 @@ router.post('/add/', function(req, res) {
 	// redirect anonymous user to login page
 	if(!req.session.logged) res.redirect("/user/login/");
 
+	// get all the choices
+	var choices = [];
+	for (var i in req.body) {
+		if(i == "poll_name") continue;
+		choices.push({
+			name: req.body[i]
+		});
+	}
 	var new_poll = new polls({
 		creator:req.session.user.id,
 		name:req.body.poll_name,
-		choices: [{
-			name: req.body.choice1
-		},
-		{
-			name: req.body.choice2
-		}]
+		choices: choices
 	});
 
 	new_poll.save(function(err, np){
@@ -47,7 +56,7 @@ router.get('/vote/:pid/:cid/',function(req, res){
 	var pid = req.params.pid;
 	if(voted_list.indexOf(pid) != -1){
 		// user has already voted on this poll
-		req.session.msg = "You have already voted on this poll !!";
+		req.session.msg = "You have already voted on this poll !! Have a look at other polls.";
 		res.redirect("/");
 		return;
 	}

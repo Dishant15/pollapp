@@ -88,7 +88,11 @@ router.get('/home/:username', function(req, res) {
 		res.redirect("/user/login/");
 	}
 	var username = req.params.username;
-  	res.render("user/home", {name: username, loggeduser:username});
+  	res.render("user/home", {
+  			title : username + " | Poll App",
+  			name: username,
+  			loggeduser:username
+  		});
 });
 
 // MyPolls page

@@ -4,6 +4,15 @@ block content
 	#message
 	if message
 		.alert.alert-danger(role='alert') #{message}
-	h1 List of polls
-	br
-	include polls/poll_list
+	#title
+	if title == "Index | Poll App"
+		.jumbotron.text-center
+			h1 Welcome To Poll App
+	.text-center
+		#title
+		if title == "Index | Poll App"
+			h1 Currently Running Polls
+		else
+			h1 My Polls
+		br
+		include polls/poll_list

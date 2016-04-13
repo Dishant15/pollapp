@@ -21,4 +21,12 @@ PollSchema.methods.get_absolute_url = function() {
 	return "/poll/detail/" + this._id + "/";
 };
 
+PollSchema.methods.total_votes = function() {
+	var sum = 0;
+	for (var i = 0; i < this.choices.length; i++) {
+		sum = sum + this.choices[i].votes;
+	}
+	return sum;
+};
+
 module.exports = mongoose.model('Polls', PollSchema);

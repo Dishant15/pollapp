@@ -12,14 +12,16 @@ nav.navbar.navbar-default
       ul.nav.navbar-nav
         #loggeduser
         if loggeduser
-          li.active
+          li
+            a(href='/') Home
+          li
             a(href='/user/home/#{loggeduser}/') Profile
           li
             a(href='/poll/add/') Add poll
           li
             a(href='/user/mypolls') My polls
         else
-          li.active
+          li
             a(href='/') Home
               span.sr-only (current)
       ul.nav.navbar-nav.navbar-right

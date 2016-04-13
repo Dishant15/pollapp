@@ -1,15 +1,30 @@
 extends ../base
 
 block content
-	h1 Add a new poll with amazing name
+	h1.text-center.poll-title Add new poll
 
-	div.container
-		form(method="post", action="")
+	form(method="post", action="")
+		.form-group
 			label Poll name
-			input(type="text", name="poll_name")
-			label Choice 1
-			input(type="text", name="choice1")
-			label Choice 2
-			input(type="text", name="choice2")
-			br
-			input(type="submit", value="Add Poll")
+			input.form-control(type="text", name="poll_name")
+		div#addhere
+			.form-group
+				label Choice 1
+				input.form-control(type="text", name="choice1")
+			.form-group
+				label Choice 2
+				input.form-control(type="text", name="choice2")
+		a#addchoice.btn.btn-default.bu-size(href="#")
+			span(class="glyphicon glyphicon-plus" aria-hidden="true") 
+			|  Add Choice
+		.text-center
+			button.btn.btn-primary.bu-size(type="submit", value="Add Poll") Add Poll
+
+block scripts
+	script.
+		var count = 2;
+		$("#addchoice").on("click",function(){
+			count += 1;
+			var html = '<div class="form-group"><label>Choice '+ count.toString() + '</label><input type="text" name="choice'+ count.toString() + '" class="form-control"/></div>';
+			$('#addhere').append(html);
+		});

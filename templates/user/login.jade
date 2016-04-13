@@ -1,13 +1,14 @@
 extends ../base
 
 block content
-	h1 Login to your account
+	h1.text-center.poll-title Login to your account
 
-	div.container
-		form(method="post", action="")
+	form(method="post", action="")
+		.form-group
 			label User name
-			input(type="text", name="username")
+			input.form-control(type="text", name="username", placeholder="username")
+		.form-group
 			label Password
-			input(type="password", name="password")
-			br
-			input(type="submit", value="Login")
+			input.form-control(type="password", name="password", placeholder="password")
+		.text-center
+			button.btn.btn-success.bu-size(type="submit", value="Login") Login

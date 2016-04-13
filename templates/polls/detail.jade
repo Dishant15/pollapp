@@ -1,5 +1,30 @@
 extends ../base
 
 block content
-	h1 Poll App
-	p poll name : #{poll.name}
+	h1.text-center.text-primary.poll-title #{poll.name}
+	#voted
+	if voted
+		.poll.text-center.img-rounded
+			- each choice in poll.choices
+				- var percentage = parseInt((choice.votes / poll.total_votes()) * 100);
+				.row
+					.col-xs-3 #{choice.name}
+					.col-xs-8
+						.progress
+							.progress-bar.progress-bar-success.progress-bar-striped(role='progressbar', aria-valuenow='#{percentage}', aria-valuemin='0', aria-valuemax='100', style='width: #{percentage}%')
+								b #{percentage}% 
+					.col-xs-1 #{choice.votes}
+			.text-center Total Votes : #{poll.total_votes()}
+	else
+		#choice.text-center
+			- for(var y=0; y < poll.choices.length; y++)
+				a.btn.btn-primary.choice-bu(href="/poll/vote/#{poll._id}/#{poll.choices[y]._id}/") #{poll.choices[y].name}
+				br
+				br
+			.text-center Total Votes : #{poll.total_votes()}
+
+	h4.text-right A poll added by : #{poll.creator}
+
+	#voted
+	if voted
+		.alert.alert-success(role='alert') You have already cast your vote on this poll !!
