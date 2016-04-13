@@ -33,9 +33,16 @@ router.post('/add/', function(req, res) {
 	var choices = [];
 	for (var i in req.body) {
 		if(i == "poll_name") continue;
+		if(!req.body[i]) continue;
 		choices.push({
 			name: req.body[i]
 		});
+	}
+	// Make sure that poll has atleast 2 choices
+	if(choices.length<2){
+		// redirect with error about choices
+		res.render("polls/add_poll", {title:"Add poll | Poll App", message: "Poll must be added with minimum 2 choices to vote on!!"});
+		return;
 	}
 	var new_poll = new polls({
 		creator:req.session.user.id,
