@@ -1,5 +1,11 @@
-ul.list-group
-- for (var x = 0; x < poll_list.length; x++)
-	a.list-group-item(href="#{poll_list[x].get_absolute_url()}") #{poll_list[x].name}
-		span.badge #{poll_list[x].total_votes()}
-		br
+#poll_list
+if poll_list.length > 0
+	ul.list-group
+	- for (var x = 0; x < poll_list.length; x++)
+		a.list-group-item(href="#{poll_list[x].get_absolute_url()}") #{poll_list[x].name}
+			span.badge #{poll_list[x].total_votes()}
+			br
+else
+	.alert.alert-danger(role='alert') Oops!! We could not find any polls to show here
+	.text-center
+		a.btn.btn-success(href="/") Go To Home
